@@ -6,10 +6,40 @@ const map: any = {};
 
 /** User packages configuration. */
 const packages: any = {
+    'ng2-redux': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
+    'redux': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
+    'redux-thunk': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
     'rxjs': {
         format: 'cjs',
         defaultExtension: 'js',
         main: 'Rx.js'
+    },
+    'lodash': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
+    },
+    'invariant': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'invariant.js'
+    },
+    'symbol-observable': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
     }
 };
 
@@ -49,7 +79,13 @@ declare var System: any;
 System.config({
     map: {
         '@angular': 'vendor/@angular',
+        'invariant': 'vendor/invariant',
+        'lodash': 'vendor/lodash',
+        'ng2-redux': 'vendor/ng2-redux',
+        'redux': 'vendor/redux',
+        'redux-thunk': 'vendor/redux-thunk',
         'rxjs': 'vendor/rxjs',
+        'symbol-observable': 'vendor/symbol-observable',
         'main': 'main.js'
     },
     packages: cliSystemConfigPackages

@@ -11,7 +11,14 @@ module.exports = function(defaults) {
       'es6-shim/es6-shim.js',
       'reflect-metadata/*.js',
       'rxjs/**/*.js',
-      '@angular/**/*.js'
+      '@angular/**/*.js',
+      'ng2-redux/**/*.js',
+      'redux/**/*.js',
+      'redux-thunk/**/*.js',
+      'invariant/**/*.js',
+      'lodash/**/*.js',
+      'is-plain-obj/**/*.js',
+      'symbol-observable/**/*.js'
     ]
   });
 };

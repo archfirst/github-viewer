@@ -24,6 +24,16 @@
 <body>
 <github-viewer-app>Loading...</github-viewer-app>
 
+<script>
+    // This is a hack to work around Redux's requirement to have a global variable
+    // called 'process'
+    process = {
+        env: {
+            NODE_ENV: 'development'
+        }
+    }
+</script>
+
 <script src="vendor/es6-shim/es6-shim.js"></script>
 <script src="vendor/reflect-metadata/Reflect.js"></script>
 <script src="vendor/systemjs/dist/system.src.js"></script>
