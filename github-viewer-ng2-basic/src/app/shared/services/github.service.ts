@@ -34,10 +34,10 @@ export class GithubService {
     }
 
     private handleError(errorResponse: Response) {
-        let err = errorResponse.json();
-        let emsg = err ?
-            (err.error ? err.error : JSON.stringify(err)) :
+        let body = errorResponse.json();
+        let message = body.message ?
+            body.message :
             (errorResponse.statusText || 'unknown error');
-        return Observable.throw(emsg);
+        return Observable.throw(message);
     }
 }

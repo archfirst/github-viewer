@@ -6,3 +6,5 @@ To run this application:
 $ npm install
 $ ng serve
 ```
+
+Now point your browser to http://localhost:4200/.
