@@ -1,0 +1,8 @@
+<form id="orgForm" (submit)="getRepos()">
+    <input [(ngModel)]="orgName" placeholder="Organization Name (e.g. archfirst)">
+    <button type="submit">Show Repos</button>
+</form>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+<app-repo-list [repos]="repos" *ngIf="repos.length > 0"></app-repo-list>
