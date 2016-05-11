@@ -1,0 +1,21 @@
+<table class="mintable">
+    <thead>
+    <tr>
+        <th>Repository</th>
+        <th class="pull-right">Stars</th>
+        <th class="pull-right">Forks</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let repo of repos">
+        <td>{{repo.name}}</td>
+        <td class="pull-right">{{repo.stargazers_count}}</td>
+        <td class="pull-right">{{repo.forks_count}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3"><em>{{repos.length}} repositories retrieved</em></td>
+    </tr>
+    </tfoot>
+</table>
