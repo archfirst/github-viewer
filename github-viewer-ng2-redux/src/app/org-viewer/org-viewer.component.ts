@@ -34,33 +34,43 @@ export class OrgViewerComponent implements OnInit {
 
     ngOnInit() {
         this.orgNameSubscription = this.ngRedux
-            .select(state => state.orgName)      // <--- select with selector function
+            .select<string>(state => state.orgName)        // <--- select with selector function
             .subscribe(orgName => {
                 console.log('----- orgNameSubscription -----');
                 console.log('orgname:', orgName);
                 console.log('state.orgName:', this.ngRedux.getState().orgName);
+                if (typeof orgName === 'undefined') {
+                    console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
+                    return;
+                }
                 this.getRepos(orgName);
             });
 
         this.errorMessageSubscription = this.ngRedux
-            .select('errorMessage')              // <--- select with key
+            .select<string>('errorMessage')                // <--- select with key
             .subscribe(errorMessage => {
                 console.log('----- errorMessageSubscription -----');
                 console.log('errorMessage:', errorMessage);
                 console.log('state.errorMessage:', this.ngRedux.getState().errorMessage);
-                if (typeof errorMessage === 'undefined') return;
-                // this.errorMessage = errorMessage;
+                if (typeof errorMessage === 'undefined') {
+                    console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
+                    return;                    
+                }
+                this.errorMessage = errorMessage;
                 this.repos = [];
             });
 
         this.reposSubscription = this.ngRedux
-            .select('repos')                     // <--- select with key
+            .select<Repo[]>('repos')                       // <--- select with key
             .subscribe(repos => {
                 console.log('----- reposSubscription -----');
                 console.log('repos:', repos);
                 console.log('state.repos:', this.ngRedux.getState().repos);
-                if (typeof repos === 'undefined') return;
-                // this.repos = repos;
+                if (typeof repos === 'undefined') {
+                    console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
+                    return;                    
+                }
+                this.repos = repos;
                 this.errorMessage = null;
             })
     }
@@ -76,8 +86,7 @@ export class OrgViewerComponent implements OnInit {
     }
 
     getRepos(orgName) {
-        // For some reason, ng2-redux is sometimes sending orgName as undefined
-        if (typeof orgName === 'undefined' || orgName === null) return;
+        if (orgName === null) return;
 
         this.githubService.getRepos(orgName)
             .subscribe(
