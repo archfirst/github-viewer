@@ -1,11 +1,11 @@
 import * as Redux from 'redux';
 const {combineReducers} = Redux;
 
-import { AppState } from './app.state.ts';
+import { AppState } from './app.state';
 import githubReducer from './github.reducer';
 
-const rootReducer = combineReducers<AppState>({
+export const rootReducer = combineReducers<AppState>({
     githubReducer
 });
 
-export default rootReducer;
+export { AppState, initialState } from './app.state';

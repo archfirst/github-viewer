@@ -8,12 +8,10 @@ export class AppState {
     }
 }
 
- 
-
 export const initialState: AppState = {
     githubReducer: {
         orgName: null,
         errorMessage: null,
-        repos:[]
+        repos: []
     }
 };
