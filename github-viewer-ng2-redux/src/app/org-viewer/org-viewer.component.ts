@@ -34,11 +34,13 @@ export class OrgViewerComponent implements OnInit {
 
     ngOnInit() {
         this.orgNameSubscription = this.ngRedux
-            .select<string>(state => state.orgName)        // <--- select with selector function
+            .select<string>(state => {
+                return state.githubReducer.orgName;
+            })        // <--- select with selector function
             .subscribe(orgName => {
                 console.log('----- orgNameSubscription -----');
                 console.log('orgname:', orgName);
-                console.log('state.orgName:', this.ngRedux.getState().orgName);
+                console.log('state.orgName:', this.ngRedux.getState().githubReducer.orgName);
                 if (typeof orgName === 'undefined') {
                     console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
                     return;
@@ -51,7 +53,7 @@ export class OrgViewerComponent implements OnInit {
             .subscribe(errorMessage => {
                 console.log('----- errorMessageSubscription -----');
                 console.log('errorMessage:', errorMessage);
-                console.log('state.errorMessage:', this.ngRedux.getState().errorMessage);
+                console.log('state.errorMessage:', this.ngRedux.getState().githubReducer.errorMessage);
                 if (typeof errorMessage === 'undefined') {
                     console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
                     return;                    
@@ -61,11 +63,11 @@ export class OrgViewerComponent implements OnInit {
             });
 
         this.reposSubscription = this.ngRedux
-            .select<Repo[]>('repos')                       // <--- select with key
+            .select<Repo[]>(n=>n.githubReducer.repos)                       // <--- select with key
             .subscribe(repos => {
                 console.log('----- reposSubscription -----');
                 console.log('repos:', repos);
-                console.log('state.repos:', this.ngRedux.getState().repos);
+                console.log('state.repos:', this.ngRedux.getState().githubReducer.repos);
                 if (typeof repos === 'undefined') {
                     console.error('TODO: Why is ng2-redux ever sending a value of undefined?');
                     return;                    
